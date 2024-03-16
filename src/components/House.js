@@ -14,19 +14,18 @@ export const House = (props) => {
     updateHouse(updatedHouse);
   }
 
-  const handleEditRoom = (roomId) => {
+  const handleEditRoom = (updatedRoom) => {
     const updatedHouse = {
       ...house,
-      rooms: house.rooms.map(t => {
-        if (t._id === roomId) {
-          return roomId;
+      rooms: house.rooms.map(currentRoom => {
+        if (currentRoom._id === updatedRoom._id) {
+          return updatedRoom;
         } else {
-          return t;
+          return currentRoom;
         }
       })
     };
     updateHouse(updatedHouse);
-    console.log('edit attempted');
   }
 
   // const editRoom = (roomId) => {

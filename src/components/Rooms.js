@@ -22,10 +22,13 @@ export function Rooms({
 
 
 function Room({room, onChange, onDelete}) {
-  // const [name, setName] = useState('');
-  // const [area, setArea] = useState(undefined);
   const [isEditing, setIsEditing] = useState(false);
+  const editing = () => {
+    setIsEditing(current => !current);
+  }
+
   let roomContent;
+  let editButton;
   if (isEditing) {
     roomContent = (
       <>
@@ -49,25 +52,22 @@ function Room({room, onChange, onDelete}) {
             });
           }}
         />
-        <button onClick={() => setIsEditing(false)}>Save</button>
       </>
     );
-    console.log({isEditing});
-    console.log({room});
+    editButton = "Save";
   } else {
     roomContent = (
       <>
         {`${room.name} Area: ${room.area}`}
-        <button onClick={() => setIsEditing(true)}>Edit</button>
       </>
     );
-    console.log({isEditing});
-    console.log({room});
+    editButton = "Edit";
   }
 
   return (
     <label>
       {roomContent}
+      <button onClick={editing}>{editButton}</button>
       <button onClick={() => onDelete(room._id)}>Delete</button>
     </label>
   )
